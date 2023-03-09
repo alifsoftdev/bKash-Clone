@@ -1,9 +1,12 @@
+import 'package:bkash_clone/view/LogIn_screen.dart';
+import 'package:bkash_clone/view/bottomNav.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../const/appColor.dart';
 import '../controller/auth.dart';
 
-class Auth_Screen extends StatelessWidget {
+class SignUp extends StatelessWidget {
   TextEditingController accountNo = TextEditingController();
 
   TextEditingController pinNo = TextEditingController();
@@ -81,7 +84,7 @@ class Auth_Screen extends StatelessWidget {
                   right: screenWidth * 0.05,
                   left: screenWidth * 0.05),
               child: Text(
-                "আপনার বিকাশ একাউন্টে\nলগইন করুন",
+                "আপনার বিকাশ একাউন্ট\nতৈরী করুন",
                 style: TextStyle(
                     color: AppColor.black,
                     fontSize: queryData.size.width * 0.07,
@@ -100,12 +103,12 @@ class Auth_Screen extends StatelessWidget {
                   TextField(
                     controller: accountNo,
                     decoration: InputDecoration(
-                        //hintText: "বিকাশ একাউন্ট নাম্বার দিন",
                         hintText: "ইমেইল একাউন্ট দিন",
                         hintStyle: TextStyle(color: AppColor.grey),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: AppColor.grey),
-                        )),
+                        ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -115,7 +118,7 @@ class Auth_Screen extends StatelessWidget {
                     children: [
                       Text("বিকাশ পিন"),
                       InkWell(
-                        onTap: (){},
+                        onTap: () {},
                         child: Text(
                           "পিন ভুলে গেছেন?",
                           style: TextStyle(color: AppColor.brandbKash),
@@ -142,7 +145,8 @@ class Auth_Screen extends StatelessWidget {
                   right: screenWidth * 0.05,
                   left: screenWidth * 0.05),
               child: InkWell(
-                  onTap: () =>Aouth().signUp(accountNo.text, pinNo.text, context),
+                  onTap: () =>
+                      Aouth().signUp(accountNo.text, pinNo.text, context),
                   child: Container(
                       height: screenHeight * 0.06,
                       width: double.maxFinite,
@@ -156,7 +160,36 @@ class Auth_Screen extends StatelessWidget {
                             color: AppColor.white,
                             fontSize: queryData.size.width * 0.05),
                       )))),
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: RichText(
+                text: TextSpan(
+                  text: "কঅ্যাকাউন্ট আছে? ",
+                  style: TextStyle(
+                      fontSize: queryData.size.width * 0.04,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black54),
+                  children: [
+                    TextSpan(
+                      text: 'লগইন করুন',
+                      style: TextStyle(
+                          fontSize: queryData.size.width * 0.05,
+                          color: AppColor.brandbKash,
+                          fontWeight: FontWeight.w600),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => LogIn()));
+                        },
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
